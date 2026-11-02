@@ -1,0 +1,50 @@
+# -----------------------------------------------------------------------------
+# Session files
+# Real session files contain personal URLs, sometimes with access tokens in
+# their query strings. They must NEVER be committed.
+# Test fixtures use fake URLs only and live in tests/fixtures/.
+# -----------------------------------------------------------------------------
+KeepTabs_*.html
+
+# -----------------------------------------------------------------------------
+# Local scratch space
+# Manual test sessions, personal notes, anything that must stay on your machine.
+# -----------------------------------------------------------------------------
+/local/
+
+# -----------------------------------------------------------------------------
+# Secrets
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crx
+
+# -----------------------------------------------------------------------------
+# Dependencies, build and test output
+# -----------------------------------------------------------------------------
+node_modules/
+dist/
+coverage/
+*.zip
+*.log
+npm-debug.log*
+
+# -----------------------------------------------------------------------------
+# AI assistants: personal, machine-specific settings
+# -----------------------------------------------------------------------------
+CLAUDE.local.md
+.claude/settings.local.json
+
+# -----------------------------------------------------------------------------
+# Operating systems and editors
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/

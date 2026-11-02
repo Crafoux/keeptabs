@@ -1,0 +1,24 @@
+# https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+indent_size = 4
+tab_width = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+# Markdown gives meaning to indentation (nested lists, code blocks):
+# spaces render the same everywhere.
+indent_style = space
+indent_size = 2
+# Two trailing spaces are a line break in Markdown.
+trim_trailing_whitespace = false
+
+[*.{yml,yaml}]
+# YAML forbids tabs.
+indent_style = space
+indent_size = 2
