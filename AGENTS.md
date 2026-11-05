@@ -192,8 +192,9 @@ To load the extension during development:
 1. Open `chrome://extensions`.
 2. Turn on **Developer mode**.
 3. Click **Load unpacked** and select the `src/` folder.
-4. In the extension's **Details**, turn on **Allow access to file URLs**
-   (required to restore session files).
+4. Optional: in the extension's **Details**, turn **Allow access to file URLs**
+   on or off. Unpacked extensions get it on by default, but store installs
+   do not: test both, it is only needed to reopen tabs showing local files.
 
 ## 11. Rules for AI coding assistants
 
