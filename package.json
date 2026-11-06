@@ -1,0 +1,21 @@
+{
+	"name": "keeptabs",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Save all tabs of a browser window to a file and restore them later with a double-click.",
+	"license": "GPL-3.0-or-later",
+	"type": "module",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit",
+		"check": "npm run typecheck && npm test"
+	},
+	"devDependencies": {
+		"@types/chrome": "0.3.7",
+		"typescript": "7.0.2",
+		"vitest": "5.1.0"
+	}
+}
