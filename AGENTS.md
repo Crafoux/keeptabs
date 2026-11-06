@@ -184,8 +184,17 @@ test(lib): cover file name sanitization
 
 ## 10. Development setup
 
-Tooling commands (tests, type checking, packaging) will be listed here once
-they exist.
+Requirements: Node.js 22 or later. Development tools are installed with npm;
+none of them ship with the extension.
+
+```
+npm install        # install the development tools (once)
+npm test           # unit tests (Vitest)
+npm run typecheck  # JSDoc type check (tsc --noEmit)
+npm run check      # both, as the CI runs them on every pull request
+```
+
+Run `npm run check` before every commit.
 
 To load the extension during development:
 
