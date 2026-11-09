@@ -1,0 +1,14 @@
+{
+	"extensionName": {
+		"message": "Keep Tabs",
+		"description": "Name of the extension, shown in the browser and in the store. A brand name: keep it as is."
+	},
+	"extensionDescription": {
+		"message": "Save all the tabs of a window to a file, close it, and get it back later with a double-click.",
+		"description": "Short description shown in the browser and in the store. 132 characters at most."
+	},
+	"actionTitle": {
+		"message": "Save this window with Keep Tabs",
+		"description": "Tooltip of the extension icon in the toolbar."
+	}
+}
