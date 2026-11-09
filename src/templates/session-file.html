@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+	Template of a Keep Tabs session file. The double-brace placeholders are
+	filled by src/lib/session-file.js. The format is described in
+	docs/technical/session-file-format.md.
+-->
+<html lang="{{lang}}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="Keep Tabs">
+	<meta name="keeptabs-format" content="{{format}}">
+	<title>{{name}}</title>
+	<style>
+		:root {
+			color-scheme: light dark;
+			--bg: #ffffff;
+			--fg: #1f2328;
+			--muted: #59636e;
+			--panel: #f6f8fa;
+			--link: #0969da;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--bg: #0d1117;
+				--fg: #e6edf3;
+				--muted: #9198a1;
+				--panel: #151b23;
+				--link: #4493f8;
+			}
+		}
+
+		body {
+			max-width: 760px;
+			margin: 0 auto;
+			padding: 40px 16px;
+			font: 15px/1.5 system-ui, sans-serif;
+			color: var(--fg);
+			background: var(--bg);
+		}
+
+		h1 {
+			margin: 0 0 4px;
+			font-size: 24px;
+			overflow-wrap: anywhere;
+		}
+
+		.summary {
+			margin: 0 0 20px;
+			color: var(--muted);
+		}
+
+		.status {
+			padding: 12px 14px;
+			border-radius: 8px;
+			background: var(--panel);
+		}
+
+		ol {
+			padding-left: 24px;
+		}
+
+		li {
+			margin: 6px 0;
+			overflow-wrap: anywhere;
+		}
+
+		a {
+			color: var(--link);
+		}
+
+		.badge {
+			display: inline-block;
+			margin-right: 6px;
+			padding: 0 8px;
+			border-radius: 10px;
+			font-size: 12px;
+			color: #ffffff;
+			background: #5f6368;
+		}
+
+		.badge-pinned {
+			color: var(--fg);
+			background: var(--panel);
+		}
+
+		.group-blue { background: #1a73e8; }
+		.group-red { background: #d93025; }
+		.group-yellow { background: #e37400; }
+		.group-green { background: #188038; }
+		.group-pink { background: #d01884; }
+		.group-purple { background: #a142f4; }
+		.group-cyan { background: #007b83; }
+		.group-orange { background: #fa903e; }
+	</style>
+</head>
+<body>
+	<h1>{{name}}</h1>
+	<p class="summary">{{summary}}</p>
+	<p class="status" id="keeptabs-status">{{notInstalled}}</p>
+	<ol>
+{{tabs}}
+	</ol>
+	<script type="application/json" id="keeptabs-session">{{sessionJson}}</script>
+	<script>
+		// Hands the session to Keep Tabs through a hidden frame of the
+		// extension. The data never appears in an address, so it never reaches
+		// the browser history. Without Keep Tabs nothing answers, and the page
+		// simply stays a list of links.
+		(function () {
+			var origin = 'chrome-extension://' + {{extensionIdJson}};
+			var frame = document.createElement('iframe');
+			window.addEventListener('message', function (event) {
+				if (event.origin !== origin || !event.data || event.data.type !== 'keeptabs-ready') {
+					return;
+				}
+				document.getElementById('keeptabs-status').textContent = {{restoringJson}};
+				frame.contentWindow.postMessage({
+					type: 'keeptabs-session',
+					session: document.getElementById('keeptabs-session').textContent
+				}, origin);
+			});
+			frame.src = origin + '/{{receiverPath}}';
+			frame.hidden = true;
+			document.body.appendChild(frame);
+		})();
+	</script>
+</body>
+</html>
