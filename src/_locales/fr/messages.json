@@ -1,0 +1,14 @@
+{
+	"extensionName": {
+		"message": "Keep Tabs",
+		"description": "Name of the extension, shown in the browser and in the store. A brand name: keep it as is."
+	},
+	"extensionDescription": {
+		"message": "Enregistrez tous les onglets d'une fenêtre dans un fichier, fermez-la, et retrouvez-la plus tard d'un double-clic.",
+		"description": "Short description shown in the browser and in the store. 132 characters at most."
+	},
+	"actionTitle": {
+		"message": "Enregistrer cette fenêtre avec Keep Tabs",
+		"description": "Tooltip of the extension icon in the toolbar."
+	}
+}
