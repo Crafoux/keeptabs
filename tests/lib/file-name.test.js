@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { defaultFileName, toFileName } from '../../src/lib/file-name.js';
+import { defaultFileName, hasHtmlExtension, sessionNameOf, toFileName } from '../../src/lib/file-name.js';
 
 describe('defaultFileName', () => {
 	it('combines the tab count, the translated label, the date and the time', () => {
@@ -78,5 +78,26 @@ describe('toFileName', () => {
 
 	it('uses the fallback when only forbidden trailing characters were typed', () => {
 		expect(toFileName('...', fallback)).toBe(`${fallback}.html`);
+	});
+});
+
+describe('hasHtmlExtension', () => {
+	it.each(['Project X.html', 'Project X.HTML'])('accepts %s', (fileName) => {
+		expect(hasHtmlExtension(fileName)).toBe(true);
+	});
+
+	it.each(['notes.txt', 'Project X.htm', 'html'])('rejects %s', (fileName) => {
+		expect(hasHtmlExtension(fileName)).toBe(false);
+	});
+});
+
+describe('sessionNameOf', () => {
+	it('removes the .html extension, whatever its case', () => {
+		expect(sessionNameOf('Project X.html')).toBe('Project X');
+		expect(sessionNameOf('Project X.HTML')).toBe('Project X');
+	});
+
+	it('keeps any other extension', () => {
+		expect(sessionNameOf('notes.txt')).toBe('notes.txt');
 	});
 });

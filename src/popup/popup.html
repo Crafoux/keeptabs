@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title data-i18n="extensionName"></title>
+	<link rel="stylesheet" href="popup.css">
+	<script type="module" src="popup.js"></script>
+</head>
+<body>
+	<main>
+		<header>
+			<h1 data-i18n="extensionName"></h1>
+			<p class="summary" id="window-summary"></p>
+		</header>
+
+		<p class="notice" id="incognito" hidden data-i18n="incognitoNotSupported"></p>
+
+		<form id="save-form" hidden>
+			<div class="field">
+				<label for="file-name" data-i18n="fileNameLabel"></label>
+				<input id="file-name" type="text" autocomplete="off" spellcheck="false">
+			</div>
+
+			<label class="switch">
+				<input id="lazy-loading" type="checkbox" role="switch" checked>
+				<span class="switch-text">
+					<span data-i18n="lazyLoadingLabel"></span>
+					<small data-i18n="lazyLoadingHint"></small>
+				</span>
+			</label>
+
+			<div class="warning" id="local-files-warning" hidden>
+				<p id="local-files-text"></p>
+				<button type="button" class="link" id="open-settings" data-i18n="openSettingsButton"></button>
+			</div>
+
+			<div class="warning" id="unrestorable-warning" hidden>
+				<p id="unrestorable-text"></p>
+				<ul id="unrestorable-list"></ul>
+			</div>
+
+			<button type="submit" class="primary" id="save-button" data-i18n="saveButton"></button>
+		</form>
+
+		<section class="saved" id="saved" hidden>
+			<p id="saved-text" role="status"></p>
+			<div class="warning" id="not-html-warning" hidden>
+				<p data-i18n="notHtmlWarning"></p>
+			</div>
+			<button type="button" class="primary" id="close-window" data-i18n="closeWindowButton"></button>
+		</section>
+
+		<p class="error" id="error" role="alert" hidden></p>
+	</main>
+</body>
+</html>

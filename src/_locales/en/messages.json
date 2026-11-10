@@ -10,5 +10,166 @@
 	"actionTitle": {
 		"message": "Save this window with Keep Tabs",
 		"description": "Tooltip of the extension icon in the toolbar."
+	},
+	"languageCode": {
+		"message": "en",
+		"description": "Code of the language of this file (\"en\", \"fr\"…). Not a sentence: write the code of the language you translate into."
+	},
+	"windowTabCount_one": {
+		"message": "$COUNT$ tab in this window",
+		"description": "Popup, under the title, when the window has one tab (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"windowTabCount_other": {
+		"message": "$COUNT$ tabs in this window",
+		"description": "Popup, under the title: number of tabs in the window (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "8" }
+		}
+	},
+	"fileNameTab_one": {
+		"message": "tab",
+		"description": "Word after the tab count in the default file name, e.g. KeepTabs_1-tab_2026-11-02_14-35-08 (singular). One word, no spaces, no accents if possible."
+	},
+	"fileNameTab_other": {
+		"message": "tabs",
+		"description": "Word after the tab count in the default file name, e.g. KeepTabs_8-tabs_2026-11-02_14-35-08 (plural). One word, no spaces, no accents if possible."
+	},
+	"fileNameLabel": {
+		"message": "File name",
+		"description": "Popup: label of the file name field."
+	},
+	"lazyLoadingLabel": {
+		"message": "Load tabs only when I open them",
+		"description": "Popup: label of the switch that restores tabs without loading them."
+	},
+	"lazyLoadingHint": {
+		"message": "Only the active tab loads right away, so restoring is faster.",
+		"description": "Popup: explanation under the lazy loading switch."
+	},
+	"saveButton": {
+		"message": "Save",
+		"description": "Popup: button that opens the \"Save as\" dialog."
+	},
+	"savingButton": {
+		"message": "Saving…",
+		"description": "Popup: label of the save button while the file is being written, which can take a few seconds."
+	},
+	"fileTypeDescription": {
+		"message": "Keep Tabs session",
+		"description": "Type of file shown in the \"Save as\" dialog."
+	},
+	"savedMessage": {
+		"message": "Saved as $FILE$.",
+		"description": "Popup: confirmation once the file is written.",
+		"placeholders": {
+			"file": { "content": "$1", "example": "KeepTabs_8-tabs_2026-11-02_14-35-08.html" }
+		}
+	},
+	"closeWindowButton": {
+		"message": "Close this window",
+		"description": "Popup: button shown after saving, closes the saved window."
+	},
+	"closeWindowFailed": {
+		"message": "The window could not be closed: $ERROR$",
+		"description": "Popup: error when closing the saved window fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "No window with id: 12." }
+		}
+	},
+	"notHtmlWarning": {
+		"message": "This file does not end in .html: double-clicking it may not open it in your browser, so the window would not be restored.",
+		"description": "Popup: warning after saving, when the user typed another extension in the \"Save as\" dialog. Keep \".html\" as is."
+	},
+	"saveFailed": {
+		"message": "The file could not be saved: $ERROR$",
+		"description": "Popup: error when writing the file fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "The request is not allowed." }
+		}
+	},
+	"readFailed": {
+		"message": "Keep Tabs could not read this window: $ERROR$",
+		"description": "Popup: error when the tabs of the window cannot be read.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "No current window" }
+		}
+	},
+	"incognitoNotSupported": {
+		"message": "Private windows cannot be saved with Keep Tabs.",
+		"description": "Popup, in an incognito (private) window."
+	},
+	"localFilesWarning_one": {
+		"message": "$COUNT$ tab shows a file from your computer. It will be saved, but it will only reopen automatically if you turn on “Allow access to file URLs”.",
+		"description": "Popup warning (singular form). Use the exact name of the setting shown in the browser's extension details, in your language.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"localFilesWarning_other": {
+		"message": "$COUNT$ tabs show files from your computer. They will be saved, but they will only reopen automatically if you turn on “Allow access to file URLs”.",
+		"description": "Popup warning (plural form). Use the exact name of the setting shown in the browser's extension details, in your language.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"openSettingsButton": {
+		"message": "Open the setting",
+		"description": "Popup: opens the extension's details, where file URL access is turned on."
+	},
+	"openSettingsFailed": {
+		"message": "The setting could not be opened: $ERROR$",
+		"description": "Popup: error when opening the extension's details fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "Cannot create tab." }
+		}
+	},
+	"unrestorableWarning_one": {
+		"message": "$COUNT$ tab cannot be reopened automatically, for example because its content was temporary:",
+		"description": "Popup warning (singular form), followed by the title of the tab.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"unrestorableWarning_other": {
+		"message": "$COUNT$ tabs cannot be reopened automatically, for example because their content was temporary:",
+		"description": "Popup warning (plural form), followed by the titles of the tabs.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"untitledTab": {
+		"message": "Tab without title or address",
+		"description": "Popup: shown in the warning list for a tab that has neither a title nor an address."
+	},
+	"sessionSummary_one": {
+		"message": "$COUNT$ tab, saved on $DATE$",
+		"description": "Session file, under its title (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" },
+			"date": { "content": "$2", "example": "November 2, 2026 at 2:35 PM" }
+		}
+	},
+	"sessionSummary_other": {
+		"message": "$COUNT$ tabs, saved on $DATE$",
+		"description": "Session file, under its title (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "8" },
+			"date": { "content": "$2", "example": "November 2, 2026 at 2:35 PM" }
+		}
+	},
+	"sessionNotInstalled": {
+		"message": "To reopen these tabs automatically, in a window identical to the saved one, install the Keep Tabs extension and open this file again.",
+		"description": "Session file: message shown when Keep Tabs is not installed."
+	},
+	"sessionRestoring": {
+		"message": "Restoring the window…",
+		"description": "Session file: shown while Keep Tabs restores the window."
+	},
+	"sessionPinned": {
+		"message": "Pinned",
+		"description": "Session file: badge in front of a pinned tab."
 	}
 }

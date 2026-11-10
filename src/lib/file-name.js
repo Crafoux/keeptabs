@@ -49,12 +49,31 @@ export function toFileName(name, fallback) {
 }
 
 /**
+ * Whether a file name ends in `.html`, whatever its case. A session file saved
+ * under another extension does not open in the browser on a double-click.
+ * @param {string} fileName
+ * @returns {boolean}
+ */
+export function hasHtmlExtension(fileName) {
+	return fileName.toLowerCase().endsWith(FILE_EXTENSION);
+}
+
+/**
+ * The session name for the file name finally chosen in the "Save as" dialog:
+ * the name without its `.html` extension.
+ * @param {string} fileName
+ * @returns {string}
+ */
+export function sessionNameOf(fileName) {
+	return hasHtmlExtension(fileName) ? fileName.slice(0, -FILE_EXTENSION.length) : fileName;
+}
+
+/**
  * @param {string} name
  * @returns {string}
  */
 function stripExtension(name) {
-	const trimmed = name.trim();
-	return trimmed.toLowerCase().endsWith(FILE_EXTENSION) ? trimmed.slice(0, -FILE_EXTENSION.length) : trimmed;
+	return sessionNameOf(name.trim());
 }
 
 /**

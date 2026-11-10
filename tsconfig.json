@@ -12,5 +12,5 @@
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["src/**/*.js", "tests/**/*.js", "*.js"]
+	"include": ["src/**/*.js", "tests/**/*.js", "types/**/*.d.ts", "*.js"]
 }
