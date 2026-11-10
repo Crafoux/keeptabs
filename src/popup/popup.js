@@ -24,7 +24,9 @@ const elements = {
 	summary: byId('window-summary'),
 	incognito: byId('incognito'),
 	form: byId('save-form'),
+	fileNameField: byId('file-name-field'),
 	fileName: /** @type {HTMLInputElement} */ (byId('file-name')),
+	lazyLoadingField: byId('lazy-loading-field'),
 	lazyLoading: /** @type {HTMLInputElement} */ (byId('lazy-loading')),
 	localFilesWarning: byId('local-files-warning'),
 	localFilesText: byId('local-files-text'),
@@ -136,7 +138,11 @@ async function save(context) {
 			// The user closed the dialog without saving.
 			return;
 		}
+		// The field must be visible again before it can take the focus back:
+		// it was lost when the field was hidden.
+		showSaving(false);
 		showError(message('saveFailed', [errorText(error)]), error);
+		elements.fileName.focus();
 	} finally {
 		showSaving(false);
 		elements.saveButton.disabled = false;
@@ -144,11 +150,15 @@ async function save(context) {
 }
 
 /**
+ * While the file is written, the choices that no longer apply are hidden. They
+ * come back only after an error: on success, the whole form is hidden.
  * @param {boolean} saving whether the file is being written
  */
 function showSaving(saving) {
 	elements.saveButton.textContent = message(saving ? 'savingButton' : 'saveButton');
 	elements.form.setAttribute('aria-busy', String(saving));
+	elements.fileNameField.hidden = saving;
+	elements.lazyLoadingField.hidden = saving;
 }
 
 /**
