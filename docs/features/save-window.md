@@ -19,9 +19,10 @@ Pressing Enter in the file name field also saves.
 
 ## After saving
 
-Once a name is chosen, the button reads **Saving…** while the file is written.
-The browser checks the file (Safe Browsing, and the antivirus on Windows)
-before it is final, which can take a few seconds.
+Once a name is chosen, the button reads **Saving…** while the file is written,
+and the file name field and the lazy loading switch are hidden: changing them
+would no longer affect the file. The browser checks the file (Safe Browsing,
+and the antivirus on Windows) before it is final, which can take a few seconds.
 
 The popup confirms the name of the written file and offers **Close this
 window**. The session takes the name finally chosen in the dialog.
@@ -30,9 +31,10 @@ If the name typed in the dialog does not end in `.html`, the confirmation warns
 that a double-click may not open the file in the browser.
 
 Closing the dialog without saving leaves the form as it was. If the file cannot
-be written, the popup shows the error, cancels the partial write and the form
-stays available. If **Close this window** or **Open the setting** fails, the
-popup shows the error too.
+be written, the popup shows the error, cancels the partial write and the whole
+form, field and switch included, is shown again with the focus back in the file
+name field. If **Close this window** or **Open the setting** fails, the popup
+shows the error too.
 
 ## Warnings
 
