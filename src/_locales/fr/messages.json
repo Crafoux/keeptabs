@@ -10,5 +10,166 @@
 	"actionTitle": {
 		"message": "Enregistrer cette fenêtre avec Keep Tabs",
 		"description": "Tooltip of the extension icon in the toolbar."
+	},
+	"languageCode": {
+		"message": "fr",
+		"description": "Code of the language of this file (\"en\", \"fr\"…). Not a sentence: write the code of the language you translate into."
+	},
+	"windowTabCount_one": {
+		"message": "$COUNT$ onglet dans cette fenêtre",
+		"description": "Popup, under the title, when the window has one tab (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"windowTabCount_other": {
+		"message": "$COUNT$ onglets dans cette fenêtre",
+		"description": "Popup, under the title: number of tabs in the window (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "8" }
+		}
+	},
+	"fileNameTab_one": {
+		"message": "onglet",
+		"description": "Word after the tab count in the default file name, e.g. KeepTabs_1-tab_2026-11-02_14-35-08 (singular). One word, no spaces, no accents if possible."
+	},
+	"fileNameTab_other": {
+		"message": "onglets",
+		"description": "Word after the tab count in the default file name, e.g. KeepTabs_8-tabs_2026-11-02_14-35-08 (plural). One word, no spaces, no accents if possible."
+	},
+	"fileNameLabel": {
+		"message": "Nom du fichier",
+		"description": "Popup: label of the file name field."
+	},
+	"lazyLoadingLabel": {
+		"message": "Ne charger les onglets qu'à leur ouverture",
+		"description": "Popup: label of the switch that restores tabs without loading them."
+	},
+	"lazyLoadingHint": {
+		"message": "Seul l'onglet actif se charge tout de suite\u00a0: la restauration est plus rapide.",
+		"description": "Popup: explanation under the lazy loading switch."
+	},
+	"saveButton": {
+		"message": "Enregistrer",
+		"description": "Popup: button that opens the \"Save as\" dialog."
+	},
+	"savingButton": {
+		"message": "Enregistrement…",
+		"description": "Popup: label of the save button while the file is being written, which can take a few seconds."
+	},
+	"fileTypeDescription": {
+		"message": "Session Keep Tabs",
+		"description": "Type of file shown in the \"Save as\" dialog."
+	},
+	"savedMessage": {
+		"message": "Enregistré sous $FILE$.",
+		"description": "Popup: confirmation once the file is written.",
+		"placeholders": {
+			"file": { "content": "$1", "example": "KeepTabs_8-onglets_2026-11-02_14-35-08.html" }
+		}
+	},
+	"closeWindowButton": {
+		"message": "Fermer cette fenêtre",
+		"description": "Popup: button shown after saving, closes the saved window."
+	},
+	"closeWindowFailed": {
+		"message": "La fenêtre n'a pas pu être fermée\u00a0: $ERROR$",
+		"description": "Popup: error when closing the saved window fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "No window with id: 12." }
+		}
+	},
+	"notHtmlWarning": {
+		"message": "Ce fichier ne se termine pas par .html\u00a0: un double-clic risque de ne pas l'ouvrir dans votre navigateur, et la fenêtre ne serait pas restaurée.",
+		"description": "Popup: warning after saving, when the user typed another extension in the \"Save as\" dialog. Keep \".html\" as is."
+	},
+	"saveFailed": {
+		"message": "Le fichier n'a pas pu être enregistré\u00a0: $ERROR$",
+		"description": "Popup: error when writing the file fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "The request is not allowed." }
+		}
+	},
+	"readFailed": {
+		"message": "Keep Tabs n'a pas pu lire cette fenêtre\u00a0: $ERROR$",
+		"description": "Popup: error when the tabs of the window cannot be read.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "No current window" }
+		}
+	},
+	"incognitoNotSupported": {
+		"message": "Les fenêtres de navigation privée ne peuvent pas être enregistrées avec Keep Tabs.",
+		"description": "Popup, in an incognito (private) window."
+	},
+	"localFilesWarning_one": {
+		"message": "$COUNT$ onglet affiche un fichier de votre ordinateur. Il sera enregistré, mais ne se rouvrira automatiquement que si vous activez «\u00a0Autoriser l'accès aux URL de fichier\u00a0».",
+		"description": "Popup warning (singular form). Use the exact name of the setting shown in the browser's extension details, in your language.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"localFilesWarning_other": {
+		"message": "$COUNT$ onglets affichent des fichiers de votre ordinateur. Ils seront enregistrés, mais ne se rouvriront automatiquement que si vous activez «\u00a0Autoriser l'accès aux URL de fichier\u00a0».",
+		"description": "Popup warning (plural form). Use the exact name of the setting shown in the browser's extension details, in your language.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"openSettingsButton": {
+		"message": "Ouvrir le réglage",
+		"description": "Popup: opens the extension's details, where file URL access is turned on."
+	},
+	"openSettingsFailed": {
+		"message": "Le réglage n'a pas pu être ouvert\u00a0: $ERROR$",
+		"description": "Popup: error when opening the extension's details fails.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "Cannot create tab." }
+		}
+	},
+	"unrestorableWarning_one": {
+		"message": "$COUNT$ onglet ne pourra pas être rouvert automatiquement, par exemple parce que son contenu était temporaire\u00a0:",
+		"description": "Popup warning (singular form), followed by the title of the tab.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"unrestorableWarning_other": {
+		"message": "$COUNT$ onglets ne pourront pas être rouverts automatiquement, par exemple parce que leur contenu était temporaire\u00a0:",
+		"description": "Popup warning (plural form), followed by the titles of the tabs.",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"untitledTab": {
+		"message": "Onglet sans titre ni adresse",
+		"description": "Popup: shown in the warning list for a tab that has neither a title nor an address."
+	},
+	"sessionSummary_one": {
+		"message": "$COUNT$ onglet, enregistré le $DATE$",
+		"description": "Session file, under its title (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" },
+			"date": { "content": "$2", "example": "2 novembre 2026 à 14:35" }
+		}
+	},
+	"sessionSummary_other": {
+		"message": "$COUNT$ onglets, enregistrés le $DATE$",
+		"description": "Session file, under its title (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "8" },
+			"date": { "content": "$2", "example": "2 novembre 2026 à 14:35" }
+		}
+	},
+	"sessionNotInstalled": {
+		"message": "Pour rouvrir automatiquement ces onglets, dans une fenêtre identique à celle enregistrée, installez l'extension Keep Tabs puis rouvrez ce fichier.",
+		"description": "Session file: message shown when Keep Tabs is not installed."
+	},
+	"sessionRestoring": {
+		"message": "Restauration de la fenêtre…",
+		"description": "Session file: shown while Keep Tabs restores the window."
+	},
+	"sessionPinned": {
+		"message": "Épinglé",
+		"description": "Session file: badge in front of a pinned tab."
 	}
 }

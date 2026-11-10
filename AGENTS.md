@@ -64,6 +64,7 @@ keeptabs/
 │   ├── templates/      Template of the generated session file
 │   └── icons/
 ├── tests/              Unit tests and fake-data fixtures
+├── types/              Type declarations for the type checker (not shipped)
 ├── scripts/            Maintenance scripts (e.g. packaging for the store)
 ├── AGENTS.md           This file
 ├── CLAUDE.md           Points Claude Code to this file

@@ -9,15 +9,10 @@ page is updated in that commit.
 
 ## Current permissions
 
-None. The extension currently only declares its name, description and toolbar
-button (with the browser's default icon for now).
-
-## Planned for v1
-
-| Permission | Needed for | Warning shown at install |
-|---|---|---|
-| `tabs` | Reading the address and title of each tab of the window being saved. Without it, the browser hides them from extensions. | "Read your browsing history" |
-| `tabGroups` | Reading the tab groups (name, color, collapsed) when saving, and recreating them when restoring. | "View and manage your tab groups" |
+| Permission | Needed for | Since | Warning shown at install |
+|---|---|---|---|
+| `tabs` | Reading the address and title of each tab of the window being saved. Without it, the browser hides them from extensions. | v0.1.0 | "Read your browsing history" |
+| `tabGroups` | Reading the tab groups (name, color, collapsed) when saving, and recreating them when restoring. | v0.1.0 | "View and manage your tab groups" |
 
 Keep Tabs reads tabs **only** in two cases: when the user clicks Save, it reads
 the tabs of the current window; when it restores a session, it reads the tabs
