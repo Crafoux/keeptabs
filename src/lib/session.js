@@ -7,7 +7,9 @@ export const SESSION_FORMAT_VERSION = 1;
 /** Tab group colors offered by Chromium browsers. */
 export const GROUP_COLORS = Object.freeze(['grey', 'blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 'orange']);
 
-const WINDOW_STATES = ['normal', 'maximized', 'fullscreen'];
+/** Window states saved in a session file. */
+export const WINDOW_STATES = Object.freeze(['normal', 'maximized', 'fullscreen']);
+
 const NO_GROUP = -1;
 
 /**
