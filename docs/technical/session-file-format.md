@@ -104,6 +104,39 @@ loaded from outside, and only by `file://` pages. Without Keep Tabs, nothing
 answers and the page stays a list of links. See the technical decisions in
 [docs/roadmap/v1.md](../roadmap/v1.md#technical-decisions).
 
+## Reading a session file
+
+Code: `src/lib/session-reader.js`.
+
+A session file is untrusted: anyone can write one, or edit it by hand. Before
+restoring, Keep Tabs checks the data it received.
+
+The file is **rejected** when its structure cannot be used:
+
+- the data is not a JSON object;
+- `format` is missing or is not a whole number of at least 1;
+- `tabs` is not an array.
+
+A `format` higher than the one this version of Keep Tabs knows is rejected with
+its own reason: the user is told to update Keep Tabs.
+
+Smaller problems are **repaired**, so that as much as possible is restored:
+
+| Problem | Repair |
+|---|---|
+| A text field that is not a string | Empty string. |
+| `lazyLoading` that is not a boolean | `true`, the default of the save form. |
+| An unknown window state | `normal`. |
+| A position that is not a number | Left out. Positions are rounded to whole pixels. |
+| A width or height that is not a positive number | Left out. |
+| A group that is not an object, or an unknown color | Kept at its position, with the missing values replaced: no title, `grey`, not collapsed. |
+| `pinned`, `active` or `collapsed` other than `true` | `false`. |
+| A `group` that is not the index of a group | The tab is ungrouped. |
+| A tab without a string `url` | Kept with an empty address, so it is listed among the tabs that could not be reopened. |
+
+Which addresses may be opened is decided afterwards, when the restore is
+planned: see `src/lib/urls.js`.
+
 ## Compatibility
 
 Keep Tabs must keep reading every past format version. A change that older
