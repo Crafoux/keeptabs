@@ -135,7 +135,34 @@ Smaller problems are **repaired**, so that as much as possible is restored:
 | A tab without a string `url` | Kept with an empty address, so it is listed among the tabs that could not be reopened. |
 
 Which addresses may be opened is decided afterwards, when the restore is
-planned: see `src/lib/urls.js`.
+planned.
+
+## Planning the restore
+
+Code: `src/lib/restore-plan.js`.
+
+Once the data is read, Keep Tabs decides what to create, and in which order.
+The plan only contains what the browser accepts. A file saved by Keep Tabs
+already follows these rules; a file edited by hand may not.
+
+- **Tabs that are not reopened** are left out and listed with their reason:
+  their address has a scheme that is not allowed (see `src/lib/urls.js`), or
+  they show a local file and "Allow access to file URLs" is off.
+- **Addresses** are opened in their normalized form, exactly as they were
+  checked: for example, spaces around them are removed.
+- **Pinned tabs** come first, in their saved order, and are never grouped.
+- **Groups**: tabs of one saved group that are not adjacent become separate
+  groups with the same title and color, so the tab order is kept. A tab that
+  is not reopened does not split a group, and a group without any reopened tab
+  is not created.
+- **Selected tab**: the first tab marked as selected. If it is not reopened,
+  the next reopened tab takes its place, or the last one when none follows. If
+  no tab is marked, the first one is selected. Its group is never collapsed,
+  so that it stays visible.
+- **Window**: the browser refuses a position or a size together with a state
+  other than `normal`. The window is created at its saved position and size,
+  then switched to its saved state, so it gets its saved size back when the
+  user restores it down.
 
 ## Compatibility
 
