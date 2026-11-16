@@ -25,7 +25,7 @@ Code: `src/lib/session.js` (data), `src/lib/session-file.js` (HTML) and
 | `<meta name="keeptabs-format">` | Format version, `1`. |
 | `<title>`, `<h1>` | Session name. |
 | `<p class="summary">` | Number of tabs and date of the save. |
-| `<p id="keeptabs-status">` | Message for users without Keep Tabs; replaced while restoring. |
+| `<p id="keeptabs-status">` | Message for users without Keep Tabs; replaced while restoring, then by the frame of Keep Tabs when the tab stays open. |
 | `<ol>` | One item per tab, in order, with "pinned" and group badges. |
 | `<script type="application/json" id="keeptabs-session">` | The session data (below). |
 | `<script>` | The loader that hands the data to Keep Tabs (below). |
@@ -94,9 +94,18 @@ The loader script:
 
 1. adds a hidden frame showing `chrome-extension://<id>/content/receiver.html`,
    where `<id>` is the ID of the Keep Tabs install that saved the file;
-2. waits for a `{ "type": "keeptabs-ready" }` message from that origin;
+2. waits for a `{ "type": "keeptabs-ready" }` message from that frame;
 3. replaces the status text with the "restoring" message, and posts
-   `{ "type": "keeptabs-session", "session": "<JSON text>" }` to the frame.
+   `{ "type": "keeptabs-session", "session": "<JSON text>" }` to the frame;
+4. on a `{ "type": "keeptabs-report", "height": <pixels> }` message from the
+   frame, hides the status text and shows the frame in its place, at that
+   height. The frame then shows the outcome of the restore, written by
+   Keep Tabs: see [Restore a window](../features/restore-window.md). The
+   message comes again whenever the height of the report changes.
+
+The loader ignores messages from any other origin or window. The frame cannot
+address its messages to the file: the origin of a local file is `"null"`. They
+carry nothing but their type and a height.
 
 The data travels in a message, never in an address, so it never reaches the
 browser history. The receiver page is the only page of Keep Tabs that can be

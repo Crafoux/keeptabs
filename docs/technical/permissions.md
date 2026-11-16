@@ -33,10 +33,14 @@ chooses.
 ## Exposed resources
 
 `web_accessible_resources` is not a permission, but it decides which pages of
-Keep Tabs other pages can load. v1 will expose a single page,
+Keep Tabs other pages can load. Keep Tabs exposes a single page,
 `content/receiver.html`, and only to local files (`file:///*`): it receives the
 data of a session file being restored. Websites cannot load it, so they can
 neither detect Keep Tabs nor send it data.
+
+The background service worker only accepts a restore request from that page.
+The data it receives is untrusted: it is checked before anything is opened (see
+[Reading a session file](session-file-format.md#reading-a-session-file)).
 
 ## Optional user setting
 
