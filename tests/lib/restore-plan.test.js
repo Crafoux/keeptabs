@@ -57,10 +57,10 @@ describe('planRestore', () => {
 			],
 		}), ALLOWED);
 		expect(plan.tabs).toEqual([
-			{ url: 'https://example.com/pinned', pinned: true, group: null },
-			{ url: 'https://example.com/a', pinned: false, group: 0 },
-			{ url: 'https://example.com/b', pinned: false, group: 0 },
-			{ url: 'chrome://settings/', pinned: false, group: null },
+			{ url: 'https://example.com/pinned', title: 'Example', pinned: true, group: null },
+			{ url: 'https://example.com/a', title: 'Example', pinned: false, group: 0 },
+			{ url: 'https://example.com/b', title: 'Example', pinned: false, group: 0 },
+			{ url: 'chrome://settings/', title: 'Example', pinned: false, group: null },
 		]);
 		expect(plan.groups).toEqual([{ title: 'Alpha', color: 'blue', collapsed: true }]);
 		expect(plan.activeIndex).toBe(3);
