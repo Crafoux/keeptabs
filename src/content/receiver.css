@@ -1,0 +1,82 @@
+/*
+ * Shown inside the session file, in place of its status message: same colors
+ * and font as src/templates/session-file.html. The background stays
+ * transparent, so the frame blends into the page.
+ */
+:root {
+	color-scheme: light dark;
+	--fg: #1f2328;
+	--muted: #59636e;
+	--panel: #f6f8fa;
+	--link: #0969da;
+	--error: #c5221f;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fg: #e6edf3;
+		--muted: #9198a1;
+		--panel: #151b23;
+		--link: #4493f8;
+		--error: #f2b8b5;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font: 15px/1.5 system-ui, sans-serif;
+	color: var(--fg);
+	background: transparent;
+}
+
+main {
+	padding: 12px 14px;
+	border-radius: 8px;
+	background: var(--panel);
+}
+
+p {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+ul {
+	margin: 8px 0 0;
+	padding-left: 20px;
+}
+
+li {
+	margin: 6px 0;
+	overflow-wrap: anywhere;
+}
+
+.reason {
+	display: block;
+	color: var(--muted);
+	font-size: 14px;
+}
+
+button.link {
+	margin-top: 8px;
+	padding: 0;
+	border: none;
+	font: inherit;
+	font-weight: 600;
+	color: var(--link);
+	background: none;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.error {
+	margin-top: 8px;
+	color: var(--error);
+}
+
+[hidden] {
+	display: none !important;
+}

@@ -80,6 +80,12 @@
 			background: #5f6368;
 		}
 
+		.keeptabs-frame {
+			width: 100%;
+			border: 0;
+			vertical-align: top;
+		}
+
 		.badge-pinned {
 			color: var(--fg);
 			background: var(--panel);
@@ -110,20 +116,30 @@
 		// simply stays a list of links.
 		(function () {
 			var origin = 'chrome-extension://' + {{extensionIdJson}};
+			var status = document.getElementById('keeptabs-status');
 			var frame = document.createElement('iframe');
 			window.addEventListener('message', function (event) {
-				if (event.origin !== origin || !event.data || event.data.type !== 'keeptabs-ready') {
+				if (event.origin !== origin || event.source !== frame.contentWindow || !event.data) {
 					return;
 				}
-				document.getElementById('keeptabs-status').textContent = {{restoringJson}};
-				frame.contentWindow.postMessage({
-					type: 'keeptabs-session',
-					session: document.getElementById('keeptabs-session').textContent
-				}, origin);
+				if (event.data.type === 'keeptabs-ready') {
+					status.textContent = {{restoringJson}};
+					frame.contentWindow.postMessage({
+						type: 'keeptabs-session',
+						session: document.getElementById('keeptabs-session').textContent
+					}, origin);
+				} else if (event.data.type === 'keeptabs-report' && typeof event.data.height === 'number') {
+					// Keep Tabs shows the outcome of the restore in place of
+					// the status message, in the language of the browser.
+					status.hidden = true;
+					frame.hidden = false;
+					frame.style.height = Math.max(0, Math.ceil(event.data.height)) + 'px';
+				}
 			});
 			frame.src = origin + '/{{receiverPath}}';
+			frame.className = 'keeptabs-frame';
 			frame.hidden = true;
-			document.body.appendChild(frame);
+			status.after(frame);
 		})();
 	</script>
 </body>

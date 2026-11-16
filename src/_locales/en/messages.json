@@ -117,11 +117,11 @@
 	},
 	"openSettingsButton": {
 		"message": "Open the setting",
-		"description": "Popup: opens the extension's details, where file URL access is turned on."
+		"description": "Popup and session file: opens the extension's details, where file URL access is turned on."
 	},
 	"openSettingsFailed": {
 		"message": "The setting could not be opened: $ERROR$",
-		"description": "Popup: error when opening the extension's details fails.",
+		"description": "Popup and session file: error when opening the extension's details fails.",
 		"placeholders": {
 			"error": { "content": "$1", "example": "Cannot create tab." }
 		}
@@ -142,7 +142,7 @@
 	},
 	"untitledTab": {
 		"message": "Tab without title or address",
-		"description": "Popup: shown in the warning list for a tab that has neither a title nor an address."
+		"description": "Popup and session file: shown in a list of tabs for a tab that has neither a title nor an address."
 	},
 	"sessionSummary_one": {
 		"message": "$COUNT$ tab, saved on $DATE$",
@@ -171,5 +171,54 @@
 	"sessionPinned": {
 		"message": "Pinned",
 		"description": "Session file: badge in front of a pinned tab."
+	},
+	"restoreDone": {
+		"message": "The window is restored. You can close this tab.",
+		"description": "Session file, once Keep Tabs restored every tab. Only seen if the tab of the file could not be closed automatically."
+	},
+	"restoreIncomplete_one": {
+		"message": "The window is restored, but $COUNT$ tab could not be reopened:",
+		"description": "Session file, after a restore, followed by the tab that is missing (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"restoreIncomplete_other": {
+		"message": "The window is restored, but $COUNT$ tabs could not be reopened:",
+		"description": "Session file, after a restore, followed by the tabs that are missing (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"restoreNothing": {
+		"message": "None of the tabs of this session could be reopened:",
+		"description": "Session file, when no tab could be reopened, followed by the list of tabs."
+	},
+	"restoreReasonUnrestorable": {
+		"message": "Its content was temporary, or Keep Tabs does not open this kind of address.",
+		"description": "Session file, under a tab that was not reopened: its address is temporary (blob:, data:) or not allowed (javascript:…)."
+	},
+	"restoreReasonLocalFile": {
+		"message": "It shows a file from your computer: it reopens once “Allow access to file URLs” is on.",
+		"description": "Session file, under a tab that was not reopened because it shows a local file. Use the exact name of the setting shown in the browser's extension details, in your language."
+	},
+	"restoreReasonFailed": {
+		"message": "The browser refused to open it.",
+		"description": "Session file, under a tab that the browser refused to open."
+	},
+	"restoreInvalid": {
+		"message": "This file is not a Keep Tabs session, or it is damaged: the window cannot be restored.",
+		"description": "Session file, when its content cannot be read."
+	},
+	"restoreNewerFormat": {
+		"message": "This file was saved by a newer version of Keep Tabs. Update Keep Tabs to restore it.",
+		"description": "Session file, when it was saved by a newer version of Keep Tabs."
+	},
+	"restoreFailed": {
+		"message": "The window could not be restored: $ERROR$",
+		"description": "Session file, when the restore stops on an error.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "Invalid value for bounds." }
+		}
 	}
 }

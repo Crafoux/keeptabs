@@ -1,0 +1,23 @@
+<!doctype html>
+<!--
+	Page loaded by session files in a hidden frame: the only page of Keep Tabs
+	that other pages can load, and only local files (see web_accessible_resources
+	in manifest.json). It receives the session and shows the outcome of the
+	restore when the tab of the file stays open.
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title data-i18n="extensionName"></title>
+	<link rel="stylesheet" href="receiver.css">
+	<script type="module" src="receiver.js"></script>
+</head>
+<body>
+	<main>
+		<p id="outcome" role="status"></p>
+		<ul id="missing-list" hidden></ul>
+		<button type="button" class="link" id="open-settings" hidden data-i18n="openSettingsButton"></button>
+		<p class="error" id="error" role="alert" hidden></p>
+	</main>
+</body>
+</html>

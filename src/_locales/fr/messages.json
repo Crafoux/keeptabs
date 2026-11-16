@@ -117,11 +117,11 @@
 	},
 	"openSettingsButton": {
 		"message": "Ouvrir le réglage",
-		"description": "Popup: opens the extension's details, where file URL access is turned on."
+		"description": "Popup and session file: opens the extension's details, where file URL access is turned on."
 	},
 	"openSettingsFailed": {
 		"message": "Le réglage n'a pas pu être ouvert\u00a0: $ERROR$",
-		"description": "Popup: error when opening the extension's details fails.",
+		"description": "Popup and session file: error when opening the extension's details fails.",
 		"placeholders": {
 			"error": { "content": "$1", "example": "Cannot create tab." }
 		}
@@ -142,7 +142,7 @@
 	},
 	"untitledTab": {
 		"message": "Onglet sans titre ni adresse",
-		"description": "Popup: shown in the warning list for a tab that has neither a title nor an address."
+		"description": "Popup and session file: shown in a list of tabs for a tab that has neither a title nor an address."
 	},
 	"sessionSummary_one": {
 		"message": "$COUNT$ onglet, enregistré le $DATE$",
@@ -171,5 +171,54 @@
 	"sessionPinned": {
 		"message": "Épinglé",
 		"description": "Session file: badge in front of a pinned tab."
+	},
+	"restoreDone": {
+		"message": "La fenêtre est restaurée. Vous pouvez fermer cet onglet.",
+		"description": "Session file, once Keep Tabs restored every tab. Only seen if the tab of the file could not be closed automatically."
+	},
+	"restoreIncomplete_one": {
+		"message": "La fenêtre est restaurée, mais $COUNT$ onglet n'a pas pu être rouvert\u00a0:",
+		"description": "Session file, after a restore, followed by the tab that is missing (singular form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "1" }
+		}
+	},
+	"restoreIncomplete_other": {
+		"message": "La fenêtre est restaurée, mais $COUNT$ onglets n'ont pas pu être rouverts\u00a0:",
+		"description": "Session file, after a restore, followed by the tabs that are missing (plural form).",
+		"placeholders": {
+			"count": { "content": "$1", "example": "2" }
+		}
+	},
+	"restoreNothing": {
+		"message": "Aucun onglet de cette session n'a pu être rouvert\u00a0:",
+		"description": "Session file, when no tab could be reopened, followed by the list of tabs."
+	},
+	"restoreReasonUnrestorable": {
+		"message": "Son contenu était temporaire, ou Keep Tabs n'ouvre pas ce type d'adresse.",
+		"description": "Session file, under a tab that was not reopened: its address is temporary (blob:, data:) or not allowed (javascript:…)."
+	},
+	"restoreReasonLocalFile": {
+		"message": "Il affiche un fichier de votre ordinateur\u00a0: il se rouvrira une fois «\u00a0Autoriser l'accès aux URL de fichier\u00a0» activé.",
+		"description": "Session file, under a tab that was not reopened because it shows a local file. Use the exact name of the setting shown in the browser's extension details, in your language."
+	},
+	"restoreReasonFailed": {
+		"message": "Le navigateur a refusé de l'ouvrir.",
+		"description": "Session file, under a tab that the browser refused to open."
+	},
+	"restoreInvalid": {
+		"message": "Ce fichier n'est pas une session Keep Tabs, ou il est endommagé\u00a0: la fenêtre ne peut pas être restaurée.",
+		"description": "Session file, when its content cannot be read."
+	},
+	"restoreNewerFormat": {
+		"message": "Ce fichier a été enregistré par une version plus récente de Keep Tabs. Mettez Keep Tabs à jour pour le restaurer.",
+		"description": "Session file, when it was saved by a newer version of Keep Tabs."
+	},
+	"restoreFailed": {
+		"message": "La fenêtre n'a pas pu être restaurée\u00a0: $ERROR$",
+		"description": "Session file, when the restore stops on an error.",
+		"placeholders": {
+			"error": { "content": "$1", "example": "Invalid value for bounds." }
+		}
 	}
 }
