@@ -35,6 +35,7 @@ import { isLocalFileUrl, isRestorableUrl } from './urls.js';
 /**
  * @typedef {object} PlannedTab
  * @property {string} url normalized, exactly as checked
+ * @property {string} title saved title, to name the tab if the browser refuses to open it
  * @property {boolean} pinned
  * @property {number | null} group index in {@link RestorePlan.groups}, or null
  */
@@ -105,7 +106,7 @@ export function planRestore(session, { fileAccessAllowed }) {
 		}
 		// Open exactly the address that was checked: parsing it drops the spaces
 		// around it, for example.
-		tabs.push({ url: new URL(tab.url).href, pinned: tab.pinned, group });
+		tabs.push({ url: new URL(tab.url).href, title: tab.title, pinned: tab.pinned, group });
 	});
 
 	if (activeIndex === -1) {
