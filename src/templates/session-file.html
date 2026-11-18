@@ -116,6 +116,11 @@
 		// simply stays a list of links.
 		(function () {
 			var origin = 'chrome-extension://' + {{extensionIdJson}};
+			// Added to the address of this tab once the session is handed over.
+			// A reload, or the browser reopening the tab at startup, keeps it:
+			// Keep Tabs then asks before restoring the window a second time.
+			var restoredMark = '#keeptabs-restored';
+			var alreadyRestored = location.hash === restoredMark;
 			var status = document.getElementById('keeptabs-status');
 			var frame = document.createElement('iframe');
 			window.addEventListener('message', function (event) {
@@ -123,11 +128,21 @@
 					return;
 				}
 				if (event.data.type === 'keeptabs-ready') {
-					status.textContent = {{restoringJson}};
+					if (!alreadyRestored) {
+						status.textContent = {{restoringJson}};
+					}
 					frame.contentWindow.postMessage({
 						type: 'keeptabs-session',
-						session: document.getElementById('keeptabs-session').textContent
+						session: document.getElementById('keeptabs-session').textContent,
+						alreadyRestored: alreadyRestored
 					}, origin);
+					if (!alreadyRestored) {
+						try {
+							history.replaceState(null, '', restoredMark);
+						} catch (error) {
+							console.error('Keep Tabs: could not mark this tab as restored.', error);
+						}
+					}
 				} else if (event.data.type === 'keeptabs-report' && typeof event.data.height === 'number') {
 					// Keep Tabs shows the outcome of the restore in place of
 					// the status message, in the language of the browser.

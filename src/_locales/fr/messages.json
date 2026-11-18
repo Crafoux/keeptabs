@@ -166,7 +166,7 @@
 	},
 	"sessionRestoring": {
 		"message": "Restauration de la fenêtre…",
-		"description": "Session file: shown while Keep Tabs restores the window."
+		"description": "Session file: shown while Keep Tabs restores the window, also after restoreAgainButton is clicked."
 	},
 	"sessionPinned": {
 		"message": "Épinglé",
@@ -220,5 +220,13 @@
 		"placeholders": {
 			"error": { "content": "$1", "example": "Invalid value for bounds." }
 		}
+	},
+	"restoreAlreadyDone": {
+		"message": "Keep Tabs a déjà restauré cette fenêtre depuis cet onglet. Elle n'est pas restaurée automatiquement une seconde fois, pour éviter de l'avoir en double.",
+		"description": "Session file, when its tab is reloaded or reopened by the browser after a restore. Followed by the button restoreAgainButton."
+	},
+	"restoreAgainButton": {
+		"message": "Restaurer à nouveau",
+		"description": "Session file: button that restores the window a second time, after restoreAlreadyDone."
 	}
 }
