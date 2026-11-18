@@ -25,8 +25,10 @@ import { isLocalFileUrl, isRestorableUrl } from './urls.js';
 
 /**
  * The browser refuses a position or a size together with a state other than
- * `normal`. The window is created at `bounds`, then switched to `state`: this
- * way it gets its saved size back when the user restores it down.
+ * `normal`. The window is created at `bounds`, so it opens on the screen it was
+ * saved on, then switched to `state`. For a maximized or fullscreen window,
+ * `bounds` are those of the screen: the browser does not tell extensions the
+ * size the window had before.
  * @typedef {object} PlannedWindow
  * @property {import('./session.js').SavedWindow['state']} state
  * @property {WindowBounds} bounds
