@@ -95,15 +95,22 @@ The loader script:
 1. adds a hidden frame showing `chrome-extension://<id>/content/receiver.html`,
    where `<id>` is the ID of the Keep Tabs install that saved the file;
 2. waits for a `{ "type": "keeptabs-ready" }` message from that frame;
-3. replaces the status text with the "restoring" message, and posts
-   `{ "type": "keeptabs-session", "session": "<JSON text>" }` to the frame;
+3. replaces the status text with the "restoring" message, posts
+   `{ "type": "keeptabs-session", "session": "<JSON text>", "alreadyRestored": false }`
+   to the frame, and adds `#keeptabs-restored` to the address of its tab;
+   - when the address already ends with `#keeptabs-restored` (the tab was
+     reloaded, or reopened by the browser at startup), it keeps the status
+     text and sends `"alreadyRestored": true`: Keep Tabs then asks before
+     restoring the window again;
 4. on a `{ "type": "keeptabs-report", "height": <pixels> }` message from the
    frame, hides the status text and shows the frame in its place, at that
    height. The frame then shows the outcome of the restore, written by
    Keep Tabs: see [Restore a window](../features/restore-window.md). The
    message comes again whenever the height of the report changes.
 
-The loader ignores messages from any other origin or window. The frame cannot
+The `#keeptabs-restored` mark carries no data: the session itself still never
+appears in an address. The loader ignores messages from any other origin or
+window. The frame cannot
 address its messages to the file: the origin of a local file is `"null"`. They
 carry nothing but their type and a height.
 

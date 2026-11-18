@@ -80,6 +80,21 @@ address and title, for 8 seconds at most.
 This report is written in the language of the browser, which may differ from
 the language of the file.
 
+## Opening the same tab again
+
+Once the data is handed over, the session file adds `#keeptabs-restored` to
+the address of its tab. When that tab loads again, the window is **not**
+restored automatically, which would give it twice: Keep Tabs says it already
+restored the window and offers **Restore again**. This happens when:
+
+- the user reloads the tab of the file, for example after an incomplete
+  restore;
+- the browser reopens that tab at startup ("Continue where you left off");
+- the user reopens the closed tab of the file (Ctrl+Shift+T).
+
+Double-clicking the file opens it without the mark: the window is restored as
+usual.
+
 ## Errors
 
 - **The file cannot be read** (not a Keep Tabs session, or damaged): the file
@@ -95,6 +110,3 @@ the language of the file.
 
 - Chrome keeps closed tab groups itself ("saved tab groups"): each restore
   creates new groups, so they may appear more than once.
-- Reloading the tab of the session file restores the window again. This also
-  happens when the tab stayed open after an incomplete restore and the browser
-  reopens it at startup.

@@ -16,10 +16,12 @@ const elements = {
 	outcome: byId('outcome'),
 	missingList: byId('missing-list'),
 	openSettings: byId('open-settings'),
+	restoreAgain: byId('restore-again'),
 	error: byId('error'),
 };
 
-let started = false;
+let received = false;
+let shown = false;
 
 // Opened on its own, outside a session file, the page has nothing to do.
 if (window.parent !== window) {
@@ -35,19 +37,41 @@ if (window.parent !== window) {
 /**
  * @param {MessageEvent} event
  */
-async function receiveSession(event) {
+function receiveSession(event) {
 	const data = event.data;
-	if (event.source !== window.parent || started || typeof data !== 'object' || data === null
+	if (event.source !== window.parent || received || typeof data !== 'object' || data === null
 		|| data.type !== 'keeptabs-session' || typeof data.session !== 'string') {
 		return;
 	}
-	// One restore per opening of the file.
-	started = true;
+	// One session per opening of the file.
+	received = true;
+	/** @type {string} */
+	const text = data.session;
+	if (data.alreadyRestored !== true) {
+		restore(text);
+		return;
+	}
+	// The tab was reloaded, or reopened by the browser: restoring again would
+	// give a second window, unless the user asks for it.
+	elements.outcome.textContent = message('restoreAlreadyDone');
+	elements.restoreAgain.addEventListener('click', () => {
+		elements.restoreAgain.hidden = true;
+		elements.outcome.textContent = message('sessionRestoring');
+		restore(text);
+	}, { once: true });
+	elements.restoreAgain.hidden = false;
+	showInFile();
+}
+
+/**
+ * @param {string} text JSON text of the session
+ */
+async function restore(text) {
 	/** @type {import('../lib/restore-messages.js').RestoreOutcome} */
 	let outcome;
 	try {
 		/** @type {import('../lib/restore-messages.js').RestoreRequest} */
-		const request = { type: RESTORE_REQUEST, text: data.session };
+		const request = { type: RESTORE_REQUEST, text };
 		outcome = await chrome.runtime.sendMessage(request);
 		if (!outcome) {
 			throw new Error('Keep Tabs did not answer');
@@ -108,6 +132,11 @@ function missingItem(tab) {
  * the window may become narrower.
  */
 function showInFile() {
+	if (shown) {
+		// The observer already follows every change of the content.
+		return;
+	}
+	shown = true;
 	const postHeight = () => {
 		// The height of the content, not of the frame: the frame must be able
 		// to shrink.
