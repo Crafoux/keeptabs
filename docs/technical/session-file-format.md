@@ -170,8 +170,10 @@ already follows these rules; a file edited by hand may not.
   so that it stays visible.
 - **Window**: the browser refuses a position or a size together with a state
   other than `normal`. The window is created at its saved position and size,
-  then switched to its saved state, so it gets its saved size back when the
-  user restores it down.
+  so it opens on the screen it was saved on, then switched to its saved state.
+  The saved size of a maximized or fullscreen window is the size of the
+  screen: the browser does not tell extensions the size the window had before.
+  Restoring it down therefore gives a window of that size.
 
 ## Compatibility
 
