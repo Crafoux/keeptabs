@@ -26,7 +26,7 @@ Code: `src/lib/session.js` (data), `src/lib/session-file.js` (HTML) and
 | `<title>`, `<h1>` | Session name. |
 | `<p class="summary">` | Number of tabs and date of the save. |
 | `<p id="keeptabs-status">` | Message for users without Keep Tabs; replaced while restoring, then by the frame of Keep Tabs when the tab stays open. |
-| `<ol class="tabs">` | The tabs, in order: one `<li class="tab">` per tab, with a "pinned" badge. Adjacent tabs of one group are inside a `<li class="group group-<color>">`, after the group name. |
+| `<ol class="tabs">` | The tabs, in order: one `<li class="tab">` per tab, with a "pinned" badge. Adjacent tabs of one group are in a nested `<ol>`, inside a `<li class="group group-<color>">`, after the group name. |
 | `<script type="application/json" id="keeptabs-session">` | The session data (below). |
 | `<script>` | The loader that hands the data to Keep Tabs (below). |
 

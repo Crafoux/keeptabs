@@ -18,7 +18,8 @@ Code: `src/lib/session-file.js` and `src/templates/session-file.html`.
   - pinned tabs carry a "Pinned" badge;
   - adjacent tabs of one tab group are shown together, under the name of the
     group on its color, with a line of that color along them, as in the
-    browser. An unnamed group shows its color only;
+    browser. An unnamed group shows its color only. The tabs of a group that
+    was collapsed are shown too: the page is there to get them back;
   - each tab shows its title, or its address when it has none.
 
 Only `http:`, `https:` and `file:` tabs are links: a local page cannot open
