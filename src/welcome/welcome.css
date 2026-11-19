@@ -1,0 +1,133 @@
+/* Same colors as the popup (src/popup/popup.css). */
+:root {
+	color-scheme: light dark;
+	--bg: #ffffff;
+	--fg: #1f2328;
+	--muted: #59636e;
+	--border: #d1d9e0;
+	--panel: #f6f8fa;
+	--accent: #0b57d0;
+	--accent-fg: #ffffff;
+	--accent-hover: #0842a0;
+	--error: #c5221f;
+	--success: #146c2e;
+	--warning: #8a5a00;
+	--focus: #0b57d0;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #1f1f1f;
+		--fg: #e3e3e3;
+		--muted: #a8a8a8;
+		--border: #474747;
+		--panel: #2a2a2a;
+		--accent: #a8c7fa;
+		--accent-fg: #062e6f;
+		--accent-hover: #c2d7fb;
+		--error: #f2b8b5;
+		--success: #6dd58c;
+		--warning: #f2c94c;
+		--focus: #a8c7fa;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font: 15px/1.55 system-ui, sans-serif;
+	color: var(--fg);
+	background: var(--bg);
+}
+
+main {
+	max-width: 680px;
+	margin: 0 auto;
+	padding: 48px 16px;
+}
+
+h1 {
+	margin: 0 0 8px;
+	font-size: 28px;
+}
+
+h2 {
+	margin: 0 0 10px;
+	font-size: 18px;
+}
+
+p {
+	margin: 0 0 10px;
+}
+
+.lead {
+	margin-bottom: 32px;
+	font-size: 17px;
+	color: var(--muted);
+}
+
+section {
+	margin-bottom: 20px;
+	padding: 20px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+}
+
+.steps {
+	margin: 0 0 12px;
+	padding-left: 22px;
+}
+
+.steps li {
+	margin: 8px 0;
+}
+
+.steps strong {
+	display: block;
+}
+
+.tip {
+	margin: 0;
+	color: var(--muted);
+}
+
+.state {
+	font-weight: 600;
+	color: var(--warning);
+}
+
+.state.on {
+	color: var(--success);
+}
+
+button {
+	padding: 8px 16px;
+	border: none;
+	border-radius: 8px;
+	font: inherit;
+	font-weight: 600;
+	color: var(--accent-fg);
+	background: var(--accent);
+	cursor: pointer;
+}
+
+button:hover {
+	background: var(--accent-hover);
+}
+
+button:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.error {
+	margin: 10px 0 0;
+	color: var(--error);
+}
+
+[hidden] {
+	display: none !important;
+}

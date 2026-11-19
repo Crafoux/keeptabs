@@ -1,0 +1,52 @@
+<!doctype html>
+<!--
+	Welcome page, opened once right after Keep Tabs is installed. It explains
+	how Keep Tabs works and presents the optional file URL access setting.
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title data-i18n="welcomeTitle"></title>
+	<link rel="stylesheet" href="welcome.css">
+	<script type="module" src="welcome.js"></script>
+</head>
+<body>
+	<main>
+		<h1 data-i18n="welcomeTitle"></h1>
+		<p class="lead" data-i18n="welcomeIntro"></p>
+
+		<section>
+			<h2 data-i18n="welcomeHowTitle"></h2>
+			<ol class="steps">
+				<li>
+					<strong data-i18n="welcomeStepSaveTitle"></strong>
+					<span data-i18n="welcomeStepSave"></span>
+				</li>
+				<li>
+					<strong data-i18n="welcomeStepCloseTitle"></strong>
+					<span data-i18n="welcomeStepClose"></span>
+				</li>
+				<li>
+					<strong data-i18n="welcomeStepRestoreTitle"></strong>
+					<span data-i18n="welcomeStepRestore"></span>
+				</li>
+			</ol>
+			<p class="tip" data-i18n="welcomePinTip"></p>
+		</section>
+
+		<section>
+			<h2 data-i18n="welcomeFilesTitle"></h2>
+			<p data-i18n="welcomeFilesText"></p>
+			<p class="state" id="file-access" role="status"></p>
+			<button type="button" id="open-settings" data-i18n="openSettingsButton"></button>
+			<p class="error" id="error" role="alert" hidden></p>
+		</section>
+
+		<section>
+			<h2 data-i18n="welcomePrivacyTitle"></h2>
+			<p data-i18n="welcomePrivacy"></p>
+		</section>
+	</main>
+</body>
+</html>

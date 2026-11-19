@@ -117,11 +117,11 @@
 	},
 	"openSettingsButton": {
 		"message": "Open the setting",
-		"description": "Popup and session file: opens the extension's details, where file URL access is turned on."
+		"description": "Popup, session file and welcome page: opens the extension's details, where file URL access is turned on."
 	},
 	"openSettingsFailed": {
 		"message": "The setting could not be opened: $ERROR$",
-		"description": "Popup and session file: error when opening the extension's details fails.",
+		"description": "Popup, session file and welcome page: error when opening the extension's details fails.",
 		"placeholders": {
 			"error": { "content": "$1", "example": "Cannot create tab." }
 		}
@@ -228,5 +228,69 @@
 	"restoreAgainButton": {
 		"message": "Restore again",
 		"description": "Session file: button that restores the window a second time, after restoreAlreadyDone."
+	},
+	"welcomeTitle": {
+		"message": "Welcome to Keep Tabs",
+		"description": "Welcome page: title, also the title of its tab."
+	},
+	"welcomeIntro": {
+		"message": "Turn a browser window into a file, close it, and get it back later exactly as it was, with a double-click.",
+		"description": "Welcome page: sentence under the title."
+	},
+	"welcomeHowTitle": {
+		"message": "How it works",
+		"description": "Welcome page: title of the section that explains the three steps."
+	},
+	"welcomeStepSaveTitle": {
+		"message": "Save a window",
+		"description": "Welcome page: title of step 1."
+	},
+	"welcomeStepSave": {
+		"message": "Click the Keep Tabs icon in the toolbar of that window, then Save. Choose a name and a folder: the Desktop by default.",
+		"description": "Welcome page: step 1. \"Save\" is the label of the button of the popup (saveButton)."
+	},
+	"welcomeStepCloseTitle": {
+		"message": "Close it",
+		"description": "Welcome page: title of step 2."
+	},
+	"welcomeStepClose": {
+		"message": "Its tabs are kept in the file, which you can move or back up like any other file.",
+		"description": "Welcome page: step 2."
+	},
+	"welcomeStepRestoreTitle": {
+		"message": "Get it back",
+		"description": "Welcome page: title of step 3."
+	},
+	"welcomeStepRestore": {
+		"message": "Double-click the file: the window opens again with the same tabs, in the same order, with its pinned tabs, tab groups, position and size.",
+		"description": "Welcome page: step 3."
+	},
+	"welcomePinTip": {
+		"message": "Tip: to keep the icon in sight, click the puzzle piece in the toolbar, then the button next to Keep Tabs that shows it permanently: a pin, or an eye in Microsoft Edge.",
+		"description": "Welcome page: how to pin the extension icon to the toolbar. Chrome and Brave show a pin, Microsoft Edge an eye. Use the names of these icons in your language."
+	},
+	"welcomeFilesTitle": {
+		"message": "Tabs showing files from your computer",
+		"description": "Welcome page: title of the section about the optional file URL access setting."
+	},
+	"welcomeFilesText": {
+		"message": "To reopen tabs that show a file from your computer, such as a PDF, turn on “Allow access to file URLs” in the details of Keep Tabs. Everything else works without it.",
+		"description": "Welcome page: explains the optional setting. Use the exact name of the setting shown in the browser's extension details, in your language."
+	},
+	"welcomeFilesOn": {
+		"message": "This setting is on.",
+		"description": "Welcome page: state of the file URL access setting, when it is on."
+	},
+	"welcomeFilesOff": {
+		"message": "This setting is off: tabs showing files from your computer are saved, but do not reopen automatically.",
+		"description": "Welcome page: state of the file URL access setting, when it is off."
+	},
+	"welcomePrivacyTitle": {
+		"message": "Your tabs stay on your computer",
+		"description": "Welcome page: title of the privacy section."
+	},
+	"welcomePrivacy": {
+		"message": "Keep Tabs has no account and no server, and sends nothing anywhere: your tabs are only written to the files you choose.",
+		"description": "Welcome page: privacy section."
 	}
 }
