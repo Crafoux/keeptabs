@@ -140,9 +140,9 @@ Format: `type(scope): subject`
 
 - **Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`,
   `build`, `ci`, `chore`, `revert`.
-- **Scopes:** `popup`, `background`, `content`, `lib`, `i18n`, `manifest`,
-  `docs`, `ci`, `deps`, `repo`. The scope may be omitted when the change is
-  global.
+- **Scopes:** `popup`, `background`, `content`, `welcome`, `lib`, `i18n`,
+  `manifest`, `docs`, `ci`, `deps`, `repo`. The scope may be omitted when the
+  change is global.
 - **Subject:** imperative mood ("add", not "added"), lowercase, no final
   period, 72 characters maximum.
 - **Body** (optional, after a blank line): explains *why* the change is made,
