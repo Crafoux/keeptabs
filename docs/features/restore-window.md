@@ -18,7 +18,8 @@ loader script of `src/templates/session-file.html`.
 3. The receiver page hands the data to the background service worker, which
    only accepts it from that page.
 
-Without Keep Tabs, nothing answers and the file stays a list of links. See
+Without Keep Tabs, nothing answers and the file stays a list of links: see
+[Open a session file without Keep Tabs](open-without-keep-tabs.md). See also
 [the session file format](../technical/session-file-format.md#hand-over-to-keep-tabs).
 
 ## What is restored
