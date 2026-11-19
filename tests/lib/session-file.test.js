@@ -43,6 +43,18 @@ function embeddedSession(html) {
 	return JSON.parse(match[1]);
 }
 
+/**
+ * @param {string} html
+ * @returns {string[]} lines of the list of tabs, without their indentation
+ */
+function tabList(html) {
+	const match = html.match(/<ol class="tabs">\n([\s\S]*?)\n\t<\/ol>/);
+	if (!match) {
+		throw new Error('No list of tabs');
+	}
+	return match[1].split('\n').map((line) => line.trim());
+}
+
 describe('renderSessionFile', () => {
 	const session = sessionWith(
 		[
@@ -73,12 +85,16 @@ describe('renderSessionFile', () => {
 		expect(html).toContain('<meta name="keeptabs-format" content="1">');
 	});
 
-	it('lists the tabs in order, with pinned and group badges', () => {
-		const items = html.match(/<li>.*<\/li>/g);
-		expect(items).toEqual([
-			'<li><span class="badge badge-pinned">Pinned</span><a href="https://example.com/">Example Domain</a></li>',
-			'<li><span class="badge group-blue">Alpha</span><a href="https://example.org/docs">Docs</a></li>',
-			'<li><span>Settings</span></li>',
+	it('lists the tabs in order, with the pinned badge and their group', () => {
+		expect(tabList(html)).toEqual([
+			'<li class="tab"><span class="badge">Pinned</span><a href="https://example.com/">Example Domain</a></li>',
+			'<li class="group group-blue">',
+			'<span class="group-title">Alpha</span>',
+			'<ol>',
+			'<li class="tab"><a href="https://example.org/docs">Docs</a></li>',
+			'</ol>',
+			'</li>',
+			'<li class="tab"><span>Settings</span></li>',
 		]);
 	});
 
@@ -126,11 +142,68 @@ describe('renderSessionFile with hostile tab data', () => {
 
 	it('never turns a javascript: URL into a link', () => {
 		expect(html).not.toContain('href="javascript:');
-		expect(html).toContain('<li><span>Click me</span></li>');
+		expect(html).toContain('<li class="tab"><span>Click me</span></li>');
 	});
 
 	it('does not fill placeholders written inside tab titles', () => {
 		expect(html).toContain('{{name}} {{sessionJson}}');
+	});
+});
+
+describe('renderSessionFile groups', () => {
+	/**
+	 * @param {import('../../src/lib/session.js').Session} session
+	 * @returns {string[]}
+	 */
+	const render = (session) => tabList(renderSessionFile({ template, session, texts: TEXTS, extensionId: EXTENSION_ID }));
+
+	it('puts adjacent tabs of a group together, under one title', () => {
+		const lines = render(sessionWith(
+			[{ title: 'A', groupId: 1 }, { title: 'B', groupId: 1 }, { title: 'C', groupId: 2 }],
+			[{ id: 1, title: 'Alpha', color: 'green', collapsed: true }, { id: 2, title: '', color: 'pink', collapsed: false }],
+		));
+		expect(lines).toEqual([
+			'<li class="group group-green">',
+			'<span class="group-title">Alpha</span>',
+			'<ol>',
+			'<li class="tab"><a href="https://example.com/">A</a></li>',
+			'<li class="tab"><a href="https://example.com/">B</a></li>',
+			'</ol>',
+			'</li>',
+			'<li class="group group-pink">',
+			'<span class="group-title">&nbsp;</span>',
+			'<ol>',
+			'<li class="tab"><a href="https://example.com/">C</a></li>',
+			'</ol>',
+			'</li>',
+		]);
+	});
+
+	it('shows tabs of one group that are not adjacent as separate blocks', () => {
+		const session = sessionWith([{ title: 'A' }, { title: 'B' }, { title: 'C' }]);
+		session.groups = [{ title: 'Alpha', color: 'blue', collapsed: false }];
+		session.tabs[0].group = 0;
+		session.tabs[2].group = 0;
+		const lines = render(session);
+		expect(lines.filter((line) => line === '<span class="group-title">Alpha</span>')).toHaveLength(2);
+		expect(lines.filter((line) => line.startsWith('<li class="tab">'))).toEqual([
+			'<li class="tab"><a href="https://example.com/">A</a></li>',
+			'<li class="tab"><a href="https://example.com/">B</a></li>',
+			'<li class="tab"><a href="https://example.com/">C</a></li>',
+		]);
+	});
+
+	it('shows a tab whose group does not exist as ungrouped', () => {
+		const session = sessionWith([{ title: 'A' }]);
+		session.tabs[0].group = 3;
+		expect(render(session)).toEqual(['<li class="tab"><a href="https://example.com/">A</a></li>']);
+	});
+
+	it('gives an unknown color the grey of the browser', () => {
+		const session = sessionWith([{ title: 'A' }]);
+		session.groups = [{ title: 'Alpha', color: 'url(x)', collapsed: false }];
+		session.tabs[0].group = 0;
+		expect(render(session)[0]).toBe('<li class="group group-grey">');
 	});
 });
 
