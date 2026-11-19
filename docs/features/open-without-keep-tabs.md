@@ -24,7 +24,9 @@ Code: `src/lib/session-file.js` and `src/templates/session-file.html`.
 
 Only `http:`, `https:` and `file:` tabs are links: a local page cannot open
 other addresses by a click (`chrome://…`), and `javascript:` addresses must
-never be clickable. Clicking a link opens that one tab.
+never be clickable. Clicking a link opens that page in a new tab, so the list
+stays open to reopen the other tabs. The opened page has no access to the
+session file (`rel="noopener"`).
 
 The page follows the light or dark theme of the system. Its texts are in the
 language of the save. It loads nothing from the network: the links load their

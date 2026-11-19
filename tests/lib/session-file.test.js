@@ -87,15 +87,23 @@ describe('renderSessionFile', () => {
 
 	it('lists the tabs in order, with the pinned badge and their group', () => {
 		expect(tabList(html)).toEqual([
-			'<li class="tab"><span class="badge">Pinned</span><a href="https://example.com/">Example Domain</a></li>',
+			'<li class="tab"><span class="badge">Pinned</span><a href="https://example.com/" target="_blank" rel="noopener">Example Domain</a></li>',
 			'<li class="group group-blue">',
 			'<span class="group-title">Alpha</span>',
 			'<ol>',
-			'<li class="tab"><a href="https://example.org/docs">Docs</a></li>',
+			'<li class="tab"><a href="https://example.org/docs" target="_blank" rel="noopener">Docs</a></li>',
 			'</ol>',
 			'</li>',
 			'<li class="tab"><span>Settings</span></li>',
 		]);
+	});
+
+	it('opens every link in a new tab, without access to the session file', () => {
+		const links = html.match(/<a [^>]*>/g);
+		expect(links).toHaveLength(2);
+		for (const link of links ?? []) {
+			expect(link).toMatch(/ target="_blank" rel="noopener">$/);
+		}
 	});
 
 	it('points the hidden frame to the Keep Tabs install that saved the file', () => {
@@ -166,14 +174,14 @@ describe('renderSessionFile groups', () => {
 			'<li class="group group-green">',
 			'<span class="group-title">Alpha</span>',
 			'<ol>',
-			'<li class="tab"><a href="https://example.com/">A</a></li>',
-			'<li class="tab"><a href="https://example.com/">B</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">A</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">B</a></li>',
 			'</ol>',
 			'</li>',
 			'<li class="group group-pink">',
 			'<span class="group-title">&nbsp;</span>',
 			'<ol>',
-			'<li class="tab"><a href="https://example.com/">C</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">C</a></li>',
 			'</ol>',
 			'</li>',
 		]);
@@ -187,16 +195,16 @@ describe('renderSessionFile groups', () => {
 		const lines = render(session);
 		expect(lines.filter((line) => line === '<span class="group-title">Alpha</span>')).toHaveLength(2);
 		expect(lines.filter((line) => line.startsWith('<li class="tab">'))).toEqual([
-			'<li class="tab"><a href="https://example.com/">A</a></li>',
-			'<li class="tab"><a href="https://example.com/">B</a></li>',
-			'<li class="tab"><a href="https://example.com/">C</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">A</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">B</a></li>',
+			'<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">C</a></li>',
 		]);
 	});
 
 	it('shows a tab whose group does not exist as ungrouped', () => {
 		const session = sessionWith([{ title: 'A' }]);
 		session.tabs[0].group = 3;
-		expect(render(session)).toEqual(['<li class="tab"><a href="https://example.com/">A</a></li>']);
+		expect(render(session)).toEqual(['<li class="tab"><a href="https://example.com/" target="_blank" rel="noopener">A</a></li>']);
 	});
 
 	it('gives an unknown color the grey of the browser', () => {
