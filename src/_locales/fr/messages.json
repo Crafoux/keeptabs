@@ -117,11 +117,11 @@
 	},
 	"openSettingsButton": {
 		"message": "Ouvrir le réglage",
-		"description": "Popup and session file: opens the extension's details, where file URL access is turned on."
+		"description": "Popup, session file and welcome page: opens the extension's details, where file URL access is turned on."
 	},
 	"openSettingsFailed": {
 		"message": "Le réglage n'a pas pu être ouvert\u00a0: $ERROR$",
-		"description": "Popup and session file: error when opening the extension's details fails.",
+		"description": "Popup, session file and welcome page: error when opening the extension's details fails.",
 		"placeholders": {
 			"error": { "content": "$1", "example": "Cannot create tab." }
 		}
@@ -228,5 +228,69 @@
 	"restoreAgainButton": {
 		"message": "Restaurer à nouveau",
 		"description": "Session file: button that restores the window a second time, after restoreAlreadyDone."
+	},
+	"welcomeTitle": {
+		"message": "Bienvenue dans Keep Tabs",
+		"description": "Welcome page: title, also the title of its tab."
+	},
+	"welcomeIntro": {
+		"message": "Transformez une fenêtre du navigateur en fichier, fermez-la, et retrouvez-la plus tard telle quelle, d'un double-clic.",
+		"description": "Welcome page: sentence under the title."
+	},
+	"welcomeHowTitle": {
+		"message": "Comment ça marche",
+		"description": "Welcome page: title of the section that explains the three steps."
+	},
+	"welcomeStepSaveTitle": {
+		"message": "Enregistrez une fenêtre",
+		"description": "Welcome page: title of step 1."
+	},
+	"welcomeStepSave": {
+		"message": "Cliquez sur l'icône de Keep Tabs dans la barre d'outils de cette fenêtre, puis sur Enregistrer. Choisissez un nom et un dossier\u00a0: le Bureau par défaut.",
+		"description": "Welcome page: step 1. \"Save\" is the label of the button of the popup (saveButton)."
+	},
+	"welcomeStepCloseTitle": {
+		"message": "Fermez-la",
+		"description": "Welcome page: title of step 2."
+	},
+	"welcomeStepClose": {
+		"message": "Ses onglets sont conservés dans le fichier, que vous pouvez déplacer ou sauvegarder comme n'importe quel autre fichier.",
+		"description": "Welcome page: step 2."
+	},
+	"welcomeStepRestoreTitle": {
+		"message": "Retrouvez-la",
+		"description": "Welcome page: title of step 3."
+	},
+	"welcomeStepRestore": {
+		"message": "Double-cliquez sur le fichier\u00a0: la fenêtre se rouvre avec les mêmes onglets, dans le même ordre, avec ses onglets épinglés, ses groupes d'onglets, sa position et sa taille.",
+		"description": "Welcome page: step 3."
+	},
+	"welcomePinTip": {
+		"message": "Astuce\u00a0: pour garder l'icône bien visible, cliquez sur la pièce de puzzle dans la barre d'outils, puis sur le bouton à côté de Keep Tabs qui l'affiche en permanence\u00a0: une épingle, ou un œil dans Microsoft Edge.",
+		"description": "Welcome page: how to pin the extension icon to the toolbar. Chrome and Brave show a pin, Microsoft Edge an eye. Use the names of these icons in your language."
+	},
+	"welcomeFilesTitle": {
+		"message": "Onglets affichant des fichiers de votre ordinateur",
+		"description": "Welcome page: title of the section about the optional file URL access setting."
+	},
+	"welcomeFilesText": {
+		"message": "Pour rouvrir les onglets qui affichent un fichier de votre ordinateur, comme un PDF, activez «\u00a0Autoriser l'accès aux URL de fichier\u00a0» dans les détails de Keep Tabs. Tout le reste fonctionne sans.",
+		"description": "Welcome page: explains the optional setting. Use the exact name of the setting shown in the browser's extension details, in your language."
+	},
+	"welcomeFilesOn": {
+		"message": "Ce réglage est activé.",
+		"description": "Welcome page: state of the file URL access setting, when it is on."
+	},
+	"welcomeFilesOff": {
+		"message": "Ce réglage est désactivé\u00a0: les onglets affichant des fichiers de votre ordinateur sont enregistrés, mais ne se rouvrent pas automatiquement.",
+		"description": "Welcome page: state of the file URL access setting, when it is off."
+	},
+	"welcomePrivacyTitle": {
+		"message": "Vos onglets restent sur votre ordinateur",
+		"description": "Welcome page: title of the privacy section."
+	},
+	"welcomePrivacy": {
+		"message": "Keep Tabs n'a ni compte ni serveur, et n'envoie rien nulle part\u00a0: vos onglets sont seulement écrits dans les fichiers que vous choisissez.",
+		"description": "Welcome page: privacy section."
 	}
 }

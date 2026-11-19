@@ -62,6 +62,7 @@ keeptabs/
 │   ├── content/        Detects an opened session file
 │   ├── lib/            Pure logic: capture, serialization, file names…
 │   ├── templates/      Template of the generated session file
+│   ├── welcome/        Welcome page shown after installation
 │   └── icons/
 ├── tests/              Unit tests and fake-data fixtures
 ├── types/              Type declarations for the type checker (not shipped)
