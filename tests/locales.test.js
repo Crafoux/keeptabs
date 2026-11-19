@@ -83,6 +83,90 @@ describe('locales', () => {
 	}
 });
 
+/** @type {Record<string, string>} path → content of every page and script of the extension */
+const sources = import.meta.glob(['../src/**/*.html', '../src/**/*.js'], {
+	eager: true,
+	query: '?raw',
+	import: 'default',
+});
+const sourceText = Object.values(sources).join('\n');
+const defaultKeys = Object.keys(defaultMessages);
+
+/**
+ * Keys the code asks for by name. A plural message is asked for by its base
+ * name ("windowTabCount"), then completed with _one or _other.
+ * @returns {{ keys: string[], pluralBases: string[] }}
+ */
+function requestedMessages() {
+	/** @type {string[]} */
+	const keys = [];
+	/** @type {string[]} */
+	const pluralBases = [];
+	for (const [path, text] of Object.entries(sources)) {
+		for (const [, key] of text.matchAll(/data-i18n="(\w+)"/g)) {
+			keys.push(`${path}: ${key}`);
+		}
+		for (const [, key] of text.matchAll(/\b(?:message|getMessage)\(\s*'(\w+)'/g)) {
+			keys.push(`${path}: ${key}`);
+		}
+		for (const [, base] of text.matchAll(/\bpluralMessage\(\s*'(\w+)'/g)) {
+			pluralBases.push(`${path}: ${base}`);
+		}
+		for (const [, base] of text.matchAll(/\bmessage\(\s*`(\w+)_\$\{/g)) {
+			pluralBases.push(`${path}: ${base}`);
+		}
+	}
+	return { keys, pluralBases };
+}
+
+/**
+ * Whether a key is written somewhere in the code: as a string ("key", 'key'),
+ * as the base of a plural message, or in the manifest (__MSG_key__).
+ * @param {string} key
+ * @returns {boolean}
+ */
+function isUsed(key) {
+	const names = [key];
+	const plural = key.match(PLURAL_KEY);
+	if (plural) {
+		names.push(plural[1]);
+	}
+	return names.some((name) => sourceText.includes(`'${name}'`)
+		|| sourceText.includes(`"${name}"`)
+		|| sourceText.includes(`\`${name}_\${`))
+		|| JSON.stringify(manifest).includes(`__MSG_${key}__`);
+}
+
+/**
+ * @param {string} reference "path: key"
+ * @returns {string} the key
+ */
+const keyOf = (reference) => reference.slice(reference.lastIndexOf(' ') + 1);
+
+describe('source code', () => {
+	it('is found by the test', () => {
+		expect(Object.keys(sources)).toContain('../src/popup/popup.js');
+		expect(requestedMessages().keys.length).toBeGreaterThan(0);
+		expect(requestedMessages().pluralBases.length).toBeGreaterThan(0);
+	});
+
+	// A missing key shows an empty text, which no other test would notice.
+	it('only asks for messages that exist', () => {
+		const { keys, pluralBases } = requestedMessages();
+		const missing = [
+			...keys.filter((reference) => !defaultKeys.includes(keyOf(reference))),
+			...pluralBases.filter((reference) => !defaultKeys.includes(`${keyOf(reference)}_one`)
+				|| !defaultKeys.includes(`${keyOf(reference)}_other`)),
+		];
+		expect(missing).toEqual([]);
+	});
+
+	// Translators should not spend time on texts that are never shown.
+	it('uses every message', () => {
+		expect(defaultKeys.filter((key) => !isUsed(key))).toEqual([]);
+	});
+});
+
 describe('manifest', () => {
 	it('only refers to messages that exist', () => {
 		const keys = JSON.stringify(manifest).match(/__MSG_(\w+)__/g) ?? [];
