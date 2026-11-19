@@ -10,6 +10,9 @@
 	--panel: #f6f8fa;
 	--link: #0969da;
 	--error: #c5221f;
+	--button-bg: #ffffff;
+	--button-border: #d1d9e0;
+	--button-hover: #eef2f6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +22,9 @@
 		--panel: #151b23;
 		--link: #4493f8;
 		--error: #f2b8b5;
+		--button-bg: #0d1117;
+		--button-border: #3d444d;
+		--button-hover: #1c2330;
 	}
 }
 
@@ -60,16 +66,27 @@ li {
 	font-size: 14px;
 }
 
-button.link {
-	margin-top: 8px;
-	padding: 0;
-	border: none;
+/* Real buttons: as links, they were easy to miss under the message. */
+button {
+	display: block;
+	margin-top: 10px;
+	padding: 6px 14px;
+	border: 1px solid var(--button-border);
+	border-radius: 8px;
 	font: inherit;
 	font-weight: 600;
 	color: var(--link);
-	background: none;
-	text-decoration: underline;
+	background: var(--button-bg);
 	cursor: pointer;
+}
+
+button:hover {
+	background: var(--button-hover);
+}
+
+button:focus-visible {
+	outline: 2px solid var(--link);
+	outline-offset: 2px;
 }
 
 .error {
