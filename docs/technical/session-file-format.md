@@ -32,7 +32,8 @@ Code: `src/lib/session.js` (data), `src/lib/session-file.js` (HTML) and
 
 Only `http:`, `https:` and `file:` tabs are shown as links: other schemes
 cannot be opened by a click from a local page, and `javascript:` must never be
-clickable.
+clickable. Links have `target="_blank" rel="noopener"`: they open in a new tab,
+which cannot reach the session file.
 
 ## Session data
 

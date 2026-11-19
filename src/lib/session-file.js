@@ -105,7 +105,11 @@ function renderTabs(session, texts) {
 function renderTab(tab, texts) {
 	const badge = tab.pinned ? `<span class="badge">${escapeHtml(texts.pinned)}</span>` : '';
 	const label = escapeHtml(tab.title || tab.url);
-	const content = isLinkable(tab.url) ? `<a href="${escapeHtml(tab.url)}">${label}</a>` : `<span>${label}</span>`;
+	// A new tab keeps the list in view, to open the other tabs. "noopener"
+	// keeps the opened page away from this one, which talks to Keep Tabs.
+	const content = isLinkable(tab.url)
+		? `<a href="${escapeHtml(tab.url)}" target="_blank" rel="noopener">${label}</a>`
+		: `<span>${label}</span>`;
 	return `<li class="tab">${badge}${content}</li>`;
 }
 
