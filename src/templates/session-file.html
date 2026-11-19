@@ -57,13 +57,32 @@
 			background: var(--panel);
 		}
 
-		ol {
-			padding-left: 24px;
+		/* Tabs are numbered in window order, across the groups. */
+		.tabs {
+			padding: 0;
+			list-style: none;
+			counter-reset: tab;
 		}
 
-		li {
+		.tabs ol {
+			padding: 0;
+			list-style: none;
+		}
+
+		.tab {
 			margin: 6px 0;
+			padding-left: 2.2em;
+			text-indent: -2.2em;
 			overflow-wrap: anywhere;
+			counter-increment: tab;
+		}
+
+		.tab::before {
+			content: counter(tab) ".";
+			display: inline-block;
+			width: 2.2em;
+			text-indent: 0;
+			color: var(--muted);
 		}
 
 		a {
@@ -76,36 +95,52 @@
 			padding: 0 8px;
 			border-radius: 10px;
 			font-size: 12px;
-			color: #ffffff;
-			background: #5f6368;
+			text-indent: 0;
+			color: var(--fg);
+			background: var(--panel);
 		}
+
+		/* A group is shown as in the browser: its name on its color, and a
+		   line of that color along its tabs. */
+		.group {
+			--group: #5f6368;
+			margin: 12px 0;
+			padding-left: 10px;
+			border-left: 4px solid var(--group);
+		}
+
+		.group-title {
+			display: inline-block;
+			padding: 0 8px;
+			border-radius: 10px;
+			font-size: 13px;
+			font-weight: 600;
+			color: #ffffff;
+			background: var(--group);
+			overflow-wrap: anywhere;
+		}
+
+		.group-blue { --group: #1a73e8; }
+		.group-red { --group: #d93025; }
+		.group-yellow { --group: #e37400; }
+		.group-green { --group: #188038; }
+		.group-pink { --group: #d01884; }
+		.group-purple { --group: #a142f4; }
+		.group-cyan { --group: #007b83; }
+		.group-orange { --group: #fa903e; }
 
 		.keeptabs-frame {
 			width: 100%;
 			border: 0;
 			vertical-align: top;
 		}
-
-		.badge-pinned {
-			color: var(--fg);
-			background: var(--panel);
-		}
-
-		.group-blue { background: #1a73e8; }
-		.group-red { background: #d93025; }
-		.group-yellow { background: #e37400; }
-		.group-green { background: #188038; }
-		.group-pink { background: #d01884; }
-		.group-purple { background: #a142f4; }
-		.group-cyan { background: #007b83; }
-		.group-orange { background: #fa903e; }
 	</style>
 </head>
 <body>
 	<h1>{{name}}</h1>
 	<p class="summary">{{summary}}</p>
 	<p class="status" id="keeptabs-status">{{notInstalled}}</p>
-	<ol>
+	<ol class="tabs">
 {{tabs}}
 	</ol>
 	<script type="application/json" id="keeptabs-session">{{sessionJson}}</script>

@@ -40,7 +40,7 @@ export function renderSessionFile({ template, session, texts, extensionId }) {
 		name: escapeHtml(session.name),
 		summary: escapeHtml(texts.summary),
 		notInstalled: escapeHtml(texts.notInstalled),
-		tabs: session.tabs.map((tab) => renderTab(tab, session.groups, texts)).join('\n'),
+		tabs: renderTabs(session, texts),
 		sessionJson: toScriptJson(session),
 		extensionIdJson: toScriptJson(extensionId),
 		restoringJson: toScriptJson(texts.restoring),
@@ -57,26 +57,56 @@ export function renderSessionFile({ template, session, texts, extensionId }) {
 }
 
 /**
- * @param {import('./session.js').SavedTab} tab
- * @param {import('./session.js').SavedGroup[]} groups
+ * Lists the tabs in window order. Adjacent tabs of one group are shown together
+ * under the name and color of the group, as in the browser. Tabs of one group
+ * that are not adjacent (a file edited by hand) form separate blocks.
+ * @param {import('./session.js').Session} session
  * @param {SessionFileTexts} texts
- * @returns {string}
+ * @returns {string} lines of HTML, indented for the template
  */
-function renderTab(tab, groups, texts) {
-	const badges = [];
-	if (tab.pinned) {
-		badges.push(`<span class="badge badge-pinned">${escapeHtml(texts.pinned)}</span>`);
-	}
-	const group = tab.group === null ? undefined : groups[tab.group];
-	if (group) {
+function renderTabs(session, texts) {
+	/** @type {string[]} */
+	const lines = [];
+	/**
+	 * @param {number} depth levels of indentation inside the list
+	 * @param {string} html
+	 */
+	const add = (depth, html) => lines.push(`${'\t'.repeat(depth + 2)}${html}`);
+	let index = 0;
+	while (index < session.tabs.length) {
+		const groupIndex = session.tabs[index].group;
+		const group = groupIndex === null ? undefined : session.groups[groupIndex];
+		if (!group) {
+			add(0, renderTab(session.tabs[index], texts));
+			index++;
+			continue;
+		}
 		const color = GROUP_COLORS.includes(group.color) ? group.color : 'grey';
 		// An unnamed group still shows its color.
 		const title = group.title ? escapeHtml(group.title) : '&nbsp;';
-		badges.push(`<span class="badge group-${color}">${title}</span>`);
+		add(0, `<li class="group group-${color}">`);
+		add(1, `<span class="group-title">${title}</span>`);
+		add(1, '<ol>');
+		while (index < session.tabs.length && session.tabs[index].group === groupIndex) {
+			add(2, renderTab(session.tabs[index], texts));
+			index++;
+		}
+		add(1, '</ol>');
+		add(0, '</li>');
 	}
+	return lines.join('\n');
+}
+
+/**
+ * @param {import('./session.js').SavedTab} tab
+ * @param {SessionFileTexts} texts
+ * @returns {string}
+ */
+function renderTab(tab, texts) {
+	const badge = tab.pinned ? `<span class="badge">${escapeHtml(texts.pinned)}</span>` : '';
 	const label = escapeHtml(tab.title || tab.url);
 	const content = isLinkable(tab.url) ? `<a href="${escapeHtml(tab.url)}">${label}</a>` : `<span>${label}</span>`;
-	return `\t\t<li>${badges.join('')}${content}</li>`;
+	return `<li class="tab">${badge}${content}</li>`;
 }
 
 /**
