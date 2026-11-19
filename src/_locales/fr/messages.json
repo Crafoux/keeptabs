@@ -290,7 +290,7 @@
 		"description": "Welcome page: title of the privacy section."
 	},
 	"welcomePrivacy": {
-		"message": "Keep Tabs n'a ni compte ni serveur, et n'envoie rien nulle part\u00a0: vos onglets sont seulement écrits dans les fichiers que vous choisissez.",
+		"message": "Keep Tabs ne demande aucun compte, n'a pas de serveur et n'envoie rien nulle part\u00a0: vos onglets sont seulement écrits dans les fichiers que vous choisissez.",
 		"description": "Welcome page: privacy section."
 	}
 }

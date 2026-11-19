@@ -4,7 +4,7 @@
 		"description": "Name of the extension, shown in the browser and in the store. A brand name: keep it as is."
 	},
 	"extensionDescription": {
-		"message": "Save all the tabs of a window to a file, close it, and get it back later with a double-click.",
+		"message": "Save all the tabs of a window to a file, close the window, and get it back later with a double-click on the file.",
 		"description": "Short description shown in the browser and in the store. 132 characters at most."
 	},
 	"actionTitle": {
@@ -141,7 +141,7 @@
 		}
 	},
 	"untitledTab": {
-		"message": "Tab without title or address",
+		"message": "Tab with no title or address",
 		"description": "Popup and session file: shown in a list of tabs for a tab that has neither a title nor an address."
 	},
 	"sessionSummary_one": {
@@ -173,18 +173,18 @@
 		"description": "Session file: badge in front of a pinned tab."
 	},
 	"restoreDone": {
-		"message": "The window is restored. You can close this tab.",
+		"message": "The window has been restored. You can close this tab.",
 		"description": "Session file, once Keep Tabs restored every tab. Only seen if the tab of the file could not be closed automatically."
 	},
 	"restoreIncomplete_one": {
-		"message": "The window is restored, but $COUNT$ tab could not be reopened:",
+		"message": "The window has been restored, but $COUNT$ tab could not be reopened:",
 		"description": "Session file, after a restore, followed by the tab that is missing (singular form).",
 		"placeholders": {
 			"count": { "content": "$1", "example": "1" }
 		}
 	},
 	"restoreIncomplete_other": {
-		"message": "The window is restored, but $COUNT$ tabs could not be reopened:",
+		"message": "The window has been restored, but $COUNT$ tabs could not be reopened:",
 		"description": "Session file, after a restore, followed by the tabs that are missing (plural form).",
 		"placeholders": {
 			"count": { "content": "$1", "example": "2" }
@@ -199,7 +199,7 @@
 		"description": "Session file, under a tab that was not reopened: its address is temporary (blob:, data:) or not allowed (javascript:…)."
 	},
 	"restoreReasonLocalFile": {
-		"message": "It shows a file from your computer: it reopens once “Allow access to file URLs” is on.",
+		"message": "It shows a file from your computer: it will reopen once “Allow access to file URLs” is turned on.",
 		"description": "Session file, under a tab that was not reopened because it shows a local file. Use the exact name of the setting shown in the browser's extension details, in your language."
 	},
 	"restoreReasonFailed": {
@@ -222,7 +222,7 @@
 		}
 	},
 	"restoreAlreadyDone": {
-		"message": "Keep Tabs already restored this window from this tab. It is not restored again automatically, so you do not get it twice.",
+		"message": "Keep Tabs has already restored this window from this tab. It is not restored again automatically, so that you do not end up with it twice.",
 		"description": "Session file, when its tab is reloaded or reopened by the browser after a restore. Followed by the button restoreAgainButton."
 	},
 	"restoreAgainButton": {
@@ -290,7 +290,7 @@
 		"description": "Welcome page: title of the privacy section."
 	},
 	"welcomePrivacy": {
-		"message": "Keep Tabs has no account and no server, and sends nothing anywhere: your tabs are only written to the files you choose.",
+		"message": "Keep Tabs needs no account, has no server and sends nothing anywhere: your tabs are only written to the files you choose.",
 		"description": "Welcome page: privacy section."
 	}
 }
