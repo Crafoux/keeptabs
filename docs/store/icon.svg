@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+	<!-- Source of src/icons/*.png. The 16 px margin is the one the Chrome Web Store asks for. -->
+	<rect x="16" y="16" width="96" height="96" rx="22" fill="#0b57d0"/>
+	<path d="M62 38h20a6 6 0 0 1 6 6v6H58v-8a4 4 0 0 1 4-4z" fill="#a8c7fa"/>
+	<path d="M34 44a6 6 0 0 1 6-6h14a6 6 0 0 1 5 3l4 7h25a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H40a6 6 0 0 1-6-6z" fill="#ffffff"/>
+	<path d="M52 66l12 12 12-12" fill="none" stroke="#0b57d0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

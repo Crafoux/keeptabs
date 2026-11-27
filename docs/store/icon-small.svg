@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="14 14 100 100">
+	<!-- Source of src/icons/icon-16.png and icon-32.png: icon.svg without the
+	margin and with a thicker arrow, so that it stays readable in the toolbar. -->
+	<rect x="16" y="16" width="96" height="96" rx="22" fill="#0b57d0"/>
+	<path d="M62 38h20a6 6 0 0 1 6 6v6H58v-8a4 4 0 0 1 4-4z" fill="#a8c7fa"/>
+	<path d="M34 44a6 6 0 0 1 6-6h14a6 6 0 0 1 5 3l4 7h25a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H40a6 6 0 0 1-6-6z" fill="#ffffff"/>
+	<path d="M51 65l13 13 13-13" fill="none" stroke="#0b57d0" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
