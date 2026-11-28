@@ -70,6 +70,7 @@ keeptabs/
 ├── AGENTS.md           This file
 ├── CLAUDE.md           Points Claude Code to this file
 ├── README.md
+├── PRIVACY.md          Privacy policy, linked from the store listing
 └── LICENSE             GNU GPL v3.0
 ```
 
