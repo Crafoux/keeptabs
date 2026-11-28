@@ -3,6 +3,8 @@
 What the Chrome Web Store listing and the extension show of Keep Tabs, and the
 sources they are made from.
 
+The texts to fill in the developer dashboard are in [listing.md](listing.md).
+
 ## Icon
 
 A folder with a tab behind it and an arrow down: the tabs of the window are
