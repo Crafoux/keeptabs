@@ -33,6 +33,7 @@ Desktop, in a project folder — and brings it back exactly as you left it.
 
 No account, no server, no tracking. Your tabs never leave your computer: they
 are only written to the file you choose.
+See the [privacy policy](PRIVACY.md).
 
 ## Contributing
 
